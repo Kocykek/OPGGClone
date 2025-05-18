@@ -69,8 +69,10 @@ def extract_item_details(item_data):
         
         # Extracting cost
         cost = item.get("gold", {}).get("total", "N/A")
-
-        if item.get('into') is None:
+        print(item.get('gold'))
+        if item.get('into') is None and item.get('gold', {}).get('total', 0) > 899:
+            isFullItem = 1
+        elif item.get('into') is None and item.get('from') and item.get('from')[0] == "3867":
             isFullItem = 1
         else:
             isFullItem = 0

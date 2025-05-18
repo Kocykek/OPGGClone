@@ -19,15 +19,16 @@ cursor = conn.cursor()
 
 # Prepare SQL insert query
 insert_query = """
-    INSERT INTO champions (champKey, name)
-    VALUES (%s, %s)
+    INSERT INTO champions (champKey, name, realName)
+    VALUES (%s, %s, %s)
 """
 
 # Insert each champion
 for champ_name, champ_info in champ_data.items():
     champ_key = int(champ_info["key"])
     name = champ_info["name"]
-    cursor.execute(insert_query, (champ_key, name))
+    idName = champ_info["id"]
+    cursor.execute(insert_query, (champ_key, idName, name))
 
 conn.commit()
 cursor.close()
